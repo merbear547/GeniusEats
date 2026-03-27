@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Saved Meals</title></head>
+<body>
+    <h1>Saved Meals</h1>
+    <div id="meal-list">
+        <div class="meal-item">
+            <span>Weekly High Protein Plan</span>
+            <button id="delete">Delete</button>
+        </div>
+    </div>
+
+    <button id="confirm-delete" style="display:none">Confirm</button>
+
+    <script>
+        const deleteBtn = document.getElementById('delete');
+        const confirmBtn = document.getElementById('confirm-delete');
+
+        deleteBtn.onclick = () => confirmBtn.style.display = 'block';
+        confirmBtn.onclick = () => document.getElementById('meal-list').innerHTML = "";
+    </script>
+</body>
+</html>
