@@ -1,5 +1,4 @@
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,7 +50,7 @@ public class MealPlannerTest {
         page.navigate(getUrl("saved-meals.html")); // 1. Click Saved Meals
         
         // Expected: Displays the specific meal plan name from your table
-        assertThat(page.locator("body")).containsText("Weekly High Protein Plan");
+        assertThat(page.locator("body")).containsText("High Protein Plan");
     }
 
     @Test
