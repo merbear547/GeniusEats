@@ -1,6 +1,11 @@
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import java.nio.file.Paths;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
