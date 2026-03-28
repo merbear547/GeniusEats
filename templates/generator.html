@@ -1,42 +1,90 @@
 <!DOCTYPE html>
-<html>
-<head><title>Meal Generator</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeniusEats - Meal Generator</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
 <body>
-    <h1>Meal Plan Generator</h1>
+
+    <h1>GeniusEats</h1>
+
+    <div class="selector-container">
+        <label for="diet-select" style="display: block; margin-bottom: 10px; font-weight: bold;">
+            Choose Dietary Restriction Plan:
+        </label>
+        <select id="diet-select">
+            <option value="high-protein">High Protein</option>
+            <option value="vegetarian">Vegetarian</option>
+        </select>
+    </div>
+
     <div id="result">
-        <p>Weekly High Protein Plan</p>
+        <h2 id="plan-title">High Protein Plan</h2>
+        <p id="plan-details">Chicken, Eggs, and Greek Yogurt.</p>
         <button id="save-btn">Save Meals</button>
-    </div>
+        
+        <div id="confirm-modal" style="display:none;">
+            <p style="font-size: 1.1rem; margin-bottom: 20px;">Confirm saving this plan?</p>
+            <button id="confirm-save-btn">Confirm Save</button>
+            <button onclick="document.getElementById('confirm-modal').style.display='none'" 
+                    class="btn-secondary">Cancel
+            </button>
+        </div>
+        <p id="status-message"></p>
 
-    <div id="confirm-modal" style="display:none; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
-        <p>Confirm saving this plan?</p>
-        <button id="confirm-save-btn">Confirm Save</button>
+        <button id="view-saved-btn" class="btn-secondary" style="display: block; width: 100%; margin-top: 10px;">
+        View Saved Meals
+        </button>
     </div>
-
-    <p id="status-message"></p>
 
     <script>
-            const saveBtn = document.getElementById('save-btn');
-            const confirmBtn = document.getElementById('confirm-save-btn');
-            const status = document.getElementById('status-message');
-            const modal = document.getElementById('confirm-modal');
+        const dietSelect = document.getElementById('diet-select');
+        const planTitle = document.getElementById('plan-title');
+        const planDetails = document.getElementById('plan-details');
+        const saveBtn = document.getElementById('save-btn');
+        const confirmBtn = document.getElementById('confirm-save-btn');
+        const status = document.getElementById('status-message');
 
-            saveBtn.onclick = () => {
-                modal.style.display = 'block';
-            };
+        const mealPlans = {
+            "high-protein": {
+                title: "High Protein Plan",
+                details: "Chicken, Eggs, and Greek Yogurt."
+            },
+            "vegetarian": {
+                title: "Vegetarian Plan",
+                details: "Tofu, Lentils, and Spinach Salad."
+            }
+        };
 
-            confirmBtn.onclick = () => {
-                // If 'isSaved' exists in this session, show the error
-                if (sessionStorage.getItem('isSaved')) {
-                    status.innerText = "meal already exists";
-                    status.style.color = "red";
-                } else {
-                    status.innerText = "Saved successfully";
-                    status.style.color = "green";
-                    sessionStorage.setItem('isSaved', 'true');
-                }
-                modal.style.display = 'none';
-            };
+        dietSelect.onchange = () => {
+            const selected = mealPlans[dietSelect.value];
+            planTitle.innerText = selected.title;
+            planDetails.innerText = selected.details;
+            status.innerText = ""; 
+        };
+
+        saveBtn.onclick = () => {
+            document.getElementById('confirm-modal').style.display = 'block';
+        };
+
+        confirmBtn.onclick = () => {
+            const currentPlan = dietSelect.value;
+            if (sessionStorage.getItem('saved-' + currentPlan)) {
+                status.innerText = "meal already exists";
+                status.style.color = "var(--error-red)"; // Uses the color from your CSS
+            } else {
+                status.innerText = "Saved successfully";
+                status.style.color = "var(--primary-green)"; // Uses the color from your CSS
+                sessionStorage.setItem('saved-' + currentPlan, 'true');
+            }
+            document.getElementById('confirm-modal').style.display = 'none';
+        };
+
+        document.getElementById('view-saved-btn').onclick = () => {
+            window.location.href = 'saved-meals.html';
+        };
     </script>
 </body>
 </html>

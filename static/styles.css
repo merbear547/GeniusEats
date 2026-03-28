@@ -1,0 +1,106 @@
+/* Color Palette */
+:root {
+    --primary-green: #2d6a4f;    /* Dark Sage */
+    --light-green: #d8f3dc;      /* Mint background */
+    --accent-green: #52b788;     /* Button green */
+    --white: #ffffff;
+    --error-red: #bc4749;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-green);
+    color: #1b4332;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    margin: 0;
+}
+
+h1 {
+    color: var(--primary-green);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.selector-container {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid var(--accent-green);
+    width: 80%;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#result {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+    transition: transform 0.3s ease;
+}
+
+#result:hover {
+    transform: translateY(-5px);
+}
+
+#plan-title {
+    color: var(--primary-green);
+    margin-top: 0;
+}
+
+button {
+    background-color: var(--accent-green);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: var(--primary-green);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background: #ccc !important;
+    margin-left: 10px;
+}
+
+#confirm-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.3);
+    z-index: 100;
+    text-align: center;
+}
+
+#status-message {
+    margin-top: 20px;
+    font-weight: bold;
+}
