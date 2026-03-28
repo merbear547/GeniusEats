@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head><title>Meal Generator</title></head>
+<body>
+    <h1>Meal Plan Generator</h1>
+    <div id="result">
+        <p>Weekly High Protein Plan</p>
+        <button id="save-btn">Save Meals</button>
+    </div>
+
+    <div id="confirm-modal" style="display:none; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+        <p>Confirm saving this plan?</p>
+        <button id="confirm-save-btn">Confirm Save</button>
+    </div>
+
+    <p id="status-message"></p>
+
+    <script>
+            const saveBtn = document.getElementById('save-btn');
+            const confirmBtn = document.getElementById('confirm-save-btn');
+            const status = document.getElementById('status-message');
+            const modal = document.getElementById('confirm-modal');
+
+            saveBtn.onclick = () => {
+                modal.style.display = 'block';
+            };
+
+            confirmBtn.onclick = () => {
+                // If 'isSaved' exists in this session, show the error
+                if (sessionStorage.getItem('isSaved')) {
+                    status.innerText = "meal already exists";
+                    status.style.color = "red";
+                } else {
+                    status.innerText = "Saved successfully";
+                    status.style.color = "green";
+                    sessionStorage.setItem('isSaved', 'true');
+                }
+                modal.style.display = 'none';
+            };
+    </script>
+</body>
+</html>
